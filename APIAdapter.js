@@ -11,6 +11,10 @@ class APIAdapter {
     return fetch(url, options).then(r => r.json())
   }
 
+  getWeather(latitude, longitude) {
+    return this.fetchAndParse(this.baseUrl + `/weather?latitude=${latitude}&longitude=${longitude}`)
+  }
+
   getAnimals() {
     return this.fetchAndParse(this.baseUrl + "/animals")
   }
