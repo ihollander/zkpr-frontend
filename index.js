@@ -1,7 +1,11 @@
 const adapter = new APIAdapter("https://zkpr.herokuapp.com")
 
+let weatherSet = false
 document.body.addEventListener("click", () => {
-  setWeatherTheme()
+  if (!weatherSet) {
+    weatherSet = true
+    setWeatherTheme()
+  }
 })
 // weather things
 function setWeatherTheme() {
