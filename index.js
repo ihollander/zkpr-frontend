@@ -1,20 +1,19 @@
 const adapter = new APIAdapter("https://zkpr.herokuapp.com")
 
 let weatherSet = false
-document.body.addEventListener("click", () => {
-  if (!weatherSet) {
-    weatherSet = true
-    setWeatherTheme()
-  }
-})
+
+document.body.addEventListener("mousemove", setWeatherTheme)
 // weather things
 function setWeatherTheme() {
+  if (!weatherSet) {
+    weatherSet = true
+    document.body.removeEventListener("mousemove", setWeatherTheme)
+  }
   navigator.geolocation.getCurrentPosition(function (position) {
-    console.log("in here")
     adapter.getWeather(position.coords.latitude, position.coords.longitude)
       .then(weather => document.body.className = weather.icon)
   })
-} // set on page load
+}
 setInterval(setWeatherTheme, 5 * 60 * 1000) // and check every 5 minutes
 
 /****************  DOM Elements ****************/
