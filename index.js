@@ -1,13 +1,16 @@
-const adapter = new APIAdapter("http://localhost:3000")
+const adapter = new APIAdapter("https://zkpr.herokuapp.com")
 
+document.body.addEventListener("click", () => {
+  setWeatherTheme()
+})
 // weather things
 function setWeatherTheme() {
   navigator.geolocation.getCurrentPosition(function (position) {
+    console.log("in here")
     adapter.getWeather(position.coords.latitude, position.coords.longitude)
       .then(weather => document.body.className = weather.icon)
   })
-}
-setWeatherTheme() // set on page load
+} // set on page load
 setInterval(setWeatherTheme, 5 * 60 * 1000) // and check every 5 minutes
 
 /****************  DOM Elements ****************/
