@@ -2,10 +2,12 @@ const adapter = new APIAdapter("https://zkpr.herokuapp.com")
 
 let weatherSet = false
 
-document.body.addEventListener("mousemove", setWeatherTheme)
 // weather things
+document.body.addEventListener("mousemove", setWeatherTheme)
+
 function setWeatherTheme() {
   if (!weatherSet) {
+    setInterval(setWeatherTheme, 5 * 60 * 1000) // check every 5 minutes
     weatherSet = true
     document.body.removeEventListener("mousemove", setWeatherTheme)
   }
@@ -14,7 +16,6 @@ function setWeatherTheme() {
       .then(weather => document.body.className = weather.icon)
   })
 }
-setInterval(setWeatherTheme, 5 * 60 * 1000) // and check every 5 minutes
 
 /****************  DOM Elements ****************/
 const lightSwitch = document.querySelector("#toggle-dark-mode")
