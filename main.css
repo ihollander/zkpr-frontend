@@ -331,7 +331,7 @@ main {
   background-color: rgb(198, 133, 255);
 }
 
-@media (min-width: 400px) and (max-width: 699px) {
+@media (max-width: 699px) {
   .card {
     flex: 0 1 auto;
     margin: 1em 0;
